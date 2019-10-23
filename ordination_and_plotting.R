@@ -3,7 +3,8 @@
 
 #+ setup, include=FALSE
 # This chunck can be ignored
-knitr::opts_chunk$set(eval = FALSE)
+knitr::opts_chunk$set(eval = FALSE,
+                      collapse = TRUE)
 
 #' #### Required Libraries
 library(plyr)
