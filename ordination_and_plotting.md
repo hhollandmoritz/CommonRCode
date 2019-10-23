@@ -1,9 +1,7 @@
-Plot an nmds or pcoa plot using ggplot
+Plot an NMDS or PCoA plot using ggplot
 ======================================
 
-For example, families grouped by phylum
-
-Libraries
+#### Required Libraries
 
     library(plyr)
     library(tidyverse)
@@ -11,8 +9,8 @@ Libraries
     library(viridis) # only necessary for pretty viridis coloring
     library(vegan)
 
-Run oridination
----------------
+Run ordination
+--------------
 
 ### Create distance matrix
 
@@ -21,14 +19,15 @@ Run oridination
 
 ### Run NMDS
 
-stress guidlines: stress &lt; 0.05 provides an excellent representation
+Stress guidlines: stress &lt; 0.05 provides an excellent representation
 in reduced dimensions, &lt; 0.1 is great, &lt; 0.2 is good/ok, and
 stress &lt; 0.3 provides a poor representation.
 
     md.nmds <- metaMDS(dm, k = 2, trymax = 100)
 
 Troubleshooting: If NMDS doesn’t converge, try increasing `trymax` or
-the number of dimensions `k =` \#\#\# Run PCOA
+the number of dimensions `k =`.  
+\#\#\# Run PCoA
 
     md.pcoa <- cmdscale(dm, k = 2, eig = TRUE, add = TRUE)
     # Get percentages of each axis

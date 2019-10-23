@@ -1,11 +1,11 @@
-#' # Plot an nmds or pcoa plot using ggplot
-#' For example, families grouped by phylum
+#' # Plot an NMDS or PCoA plot using ggplot
+#'
 
 #+ setup, include=FALSE
 # This chunck can be ignored
 knitr::opts_chunk$set(eval = FALSE)
 
-#' Libraries
+#' #### Required Libraries
 library(plyr)
 library(tidyverse)
 library(ggplot2)
@@ -13,19 +13,19 @@ library(viridis) # only necessary for pretty viridis coloring
 library(vegan)
 
 
-#' ## Run oridination
+#' ## Run ordination
 #' ### Create distance matrix
 md_transformed <- t(sqrt(input_rar_noneg$data_loaded)) # input_rar_noneg$data_loaded is a taxa table from mctoolsr
 dm <- vegdist(md_transformed, method = "bray")
 
 #' ### Run NMDS
-#' stress guidlines: stress < 0.05 provides an excellent representation in reduced dimensions, < 0.1 is great, < 0.2 is good/ok, and stress < 0.3 provides a poor representation. 
+#' Stress guidlines: stress < 0.05 provides an excellent representation in reduced dimensions, < 0.1 is great, < 0.2 is good/ok, and stress < 0.3 provides a poor representation. 
 #' 
 md.nmds <- metaMDS(dm, k = 2, trymax = 100)
 
-#' Troubleshooting: If NMDS doesn't converge, try increasing ```trymax``` or the number of dimensions ```k =```
+#' Troubleshooting: If NMDS doesn't converge, try increasing ```trymax``` or the number of dimensions ```k =```.  
 
-#' ### Run PCOA 
+#' ### Run PCoA 
 md.pcoa <- cmdscale(dm, k = 2, eig = TRUE, add = TRUE)
 # Get percentages of each axis
 md.pct_ex <- round((md.pcoa$eig/sum(md.pcoa$eig)) * 100, 1)
