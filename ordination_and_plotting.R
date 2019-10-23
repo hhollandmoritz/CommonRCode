@@ -4,7 +4,7 @@
 #+ setup, include=FALSE
 # This chunck can be ignored
 knitr::opts_chunk$set(eval = FALSE,
-                      collapse = TRUE)
+                      include = TRUE)
 
 #' #### Required Libraries
 library(plyr)
